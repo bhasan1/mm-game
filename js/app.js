@@ -99,7 +99,8 @@ function endTheGame (){
         stopTimer();
        swal({
         title: "Congrats!!",
-        text: "You won" + "you got" + rate + "in just" + +moveContainer.innerHTML,
+        text: "You won with.... " + `${rate} star . ` +  " Your moves are " + moveContainer.innerHTML 
+        +"."+" Your Time is "+TimeContainer.innerHTML +".",
         icon: "success",
       });
       //clear stars here
@@ -148,8 +149,26 @@ moveContainer.innerHTML = 0;
  function addMoves(){
      moves++;
      moveContainer.innerHTML = moves;
-     rate=rating();
+     rating();
  }
+
+ /*let starsBox = document.querySelector(".stars");
+ starsBox.innerHTML ="";
+ rate=function rating(){
+    if (moves <= 10){
+        starsBox.innerHTML = `<li><i class="fa fa-star"></i></li>
+        <li><i class="fa fa-star"></i></li>
+        <li><i class="fa fa-star"></i></li>`;
+    }else if (moves >10 && moves <= 18){
+        starsBox.innerHTML = `<li><i class="fa fa-star"></i></li>
+        <li><i class="fa fa-star"></i></li>`;
+}else if (moves >18 ){
+        starsBox.innerHTML = `<li><i class="fa fa-star"></i></li>`;
+    }
+} ;
+*/
+
+
 
 /// stars function
 let starsBox = document.querySelector(".stars");
@@ -161,11 +180,14 @@ function rating(){
         starsBox.innerHTML = `<li><i class="fa fa-star"></i></li>
         <li><i class="fa fa-star"></i></li>
         <li><i class="fa fa-star"></i></li>`;
+        rate=3;
     }else if (moves >10 && moves <= 18){
         starsBox.innerHTML = `<li><i class="fa fa-star"></i></li>
         <li><i class="fa fa-star"></i></li>`;
+        rate=2;
 }else if (moves >18 ){
         starsBox.innerHTML = `<li><i class="fa fa-star"></i></li>`;
+        rate=1;
     }
 } 
 
