@@ -24,8 +24,9 @@ let opendCards = [];
 let matchedCards = [];
 let minutes =0;
 let seconds = 0;
-let timer;
+let timer= null;
 const TimeContainer = document.querySelector(".timer");
+let rate;
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -78,7 +79,11 @@ for (let i = 0; i < myCards.length; i++){
         }
         
         addMoves();
-        startTimer();
+         //this will fix the interval bug getting faster
+        if (timer == null) {
+            TimeContainer.innerHTML = "00:00"
+            startTimer();
+        }
     // end first if(2 cards do not have these classes it means they have not been clicked before.)
     }else {
         card.classList.add("open", "show", "disable");
@@ -90,11 +95,15 @@ for (let i = 0; i < myCards.length; i++){
 // function to check if all cards have been flipped and the game finished.
 function endTheGame (){
     if(matchedCards.length === myCards.length){
+        //stop the timer
+        stopTimer();
        swal({
         title: "Congrats!!",
-        text: "You won"+ "you got" +"star"+"in just"+ +"second",
+        text: "You won" + "you got" + rate + "in just" + +moveContainer.innerHTML,
         icon: "success",
       });
+      //clear stars here
+      starsBox.innerHTML="";
     }
    }
 //// call the main function (start(); to start the game!)
@@ -109,12 +118,19 @@ start();
 //// reset the game after finish!
 const setGame = document.querySelector(".restart");
 setGame.addEventListener("click", function(){
-    //1-delete all cards
-    
+     //1-clear timer here
+     stopTimer();
+     TimeContainer.innerHTML="";
+    //2-delete all cards
     cardsBox.innerHTML = "";
-    //2-call start() to start the game again.
+    //3-clear timer here
+    cardsBox.innerHTML = "";
+    timer = null;
+    seconds = 0;
+    minutes = 0;
+    //4-call start() to start the game again.
     start();
-    //3-reset any array.
+    //5-reset any array.
   
     matchedCards = [];
     moves = 0;
@@ -126,13 +142,13 @@ setGame.addEventListener("click", function(){
 });
 
 // calculate the moves
-const moveContainer = document.querySelector(".moves")
+const moveContainer = document.querySelector(".moves");
 let moves = 0;
 moveContainer.innerHTML = 0;
  function addMoves(){
      moves++;
      moveContainer.innerHTML = moves;
-     rating();
+     rate=rating();
  }
 
 /// stars function
@@ -170,9 +186,11 @@ function shuffle(array) {
 
 
 function startTimer() {
+     //you need to fix your interval counting
+        //you need to check if seconds is already 60 not 0
     timer = setInterval(function(){
         seconds++;
-        if(seconds == 0){
+        if(seconds == 60){
             minutes++;
             seconds=0;
         }
@@ -186,8 +204,8 @@ function stopTimer(){
 }
 
 function formatTimer(){
-    let sec = seconds > 9 ? string(seconds) : '0' + string(seconds);
-    let min = minutes > 9 ? string(minutes) : '0' + string(minutes);
+    let sec = seconds > 9 ? seconds.toString() : '0' + seconds.toString();
+    let min = minutes > 9 ? minutes.toString() : '0' + minutes.toString();
     return min + ':' + sec;
 }
 
