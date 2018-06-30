@@ -1,6 +1,6 @@
 Memory Game
 
-Is game is one of our projects in our Front-End Web Developer Nanodegree from udacity.com
+This game is one of our projects in our Front-End Web Developer Nanodegree from udacity.com
 
 Instructions:
 . Click a card then look for a matching one. To win the game, you should flip all the cards.
