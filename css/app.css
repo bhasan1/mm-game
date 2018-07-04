@@ -111,3 +111,18 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+@media screen and (max-width:660px){
+    .container,.deck{
+        display: flex;
+        flex-wrap: wrap;
+     }
+     
+    .deck {
+        width:100%;
+    }
+    .deck .card{
+        margin: 6px;
+    }
+ 
+ }

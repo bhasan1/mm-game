@@ -35,7 +35,7 @@ let rate;
  */
 /// tha main function(start()).
 function start(){
-//shuffle(myCards); 
+shuffle(myCards); 
 // generate the cards in index.hrml page.
 
 for (let i = 0; i < myCards.length; i++){
@@ -99,7 +99,7 @@ function endTheGame (){
         stopTimer();
        swal({
         title: "Congrats!!",
-        text: "You won with.... " + `${rate} star . ` +  " Your moves are " + moveContainer.innerHTML 
+        text: "You won with.... " + `${rate} . ` +  " Your moves are " + moveContainer.innerHTML 
         +"."+" Your Time is "+TimeContainer.innerHTML +".",
         icon: "success",
       });
@@ -152,25 +152,7 @@ moveContainer.innerHTML = 0;
      rating();
  }
 
- /*let starsBox = document.querySelector(".stars");
- starsBox.innerHTML ="";
- rate=function rating(){
-    if (moves <= 10){
-        starsBox.innerHTML = `<li><i class="fa fa-star"></i></li>
-        <li><i class="fa fa-star"></i></li>
-        <li><i class="fa fa-star"></i></li>`;
-    }else if (moves >10 && moves <= 18){
-        starsBox.innerHTML = `<li><i class="fa fa-star"></i></li>
-        <li><i class="fa fa-star"></i></li>`;
-}else if (moves >18 ){
-        starsBox.innerHTML = `<li><i class="fa fa-star"></i></li>`;
-    }
-} ;
-*/
-
-
-
-/// stars function
+ /// stars function
 let starsBox = document.querySelector(".stars");
 starsBox.innerHTML = `<li><i class="fa fa-star"></i></li>
 <li><i class="fa fa-star"></i></li>
@@ -180,14 +162,14 @@ function rating(){
         starsBox.innerHTML = `<li><i class="fa fa-star"></i></li>
         <li><i class="fa fa-star"></i></li>
         <li><i class="fa fa-star"></i></li>`;
-        rate=3;
-    }else if (moves >10 && moves <= 18){
+        rate= 3 + " stars";
+        }else if (moves >10 && moves <= 18){
         starsBox.innerHTML = `<li><i class="fa fa-star"></i></li>
         <li><i class="fa fa-star"></i></li>`;
-        rate=2;
+        rate=2+ " stars";
 }else if (moves >18 ){
         starsBox.innerHTML = `<li><i class="fa fa-star"></i></li>`;
-        rate=1;
+        rate=1 + " star";
     }
 } 
 
